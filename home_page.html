@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>INST377 - Final Project</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <style>
+        body {
+          font-family: "Helvetica Neue", Helvetica, sans-serif;
+        }
+        #nav {
+          background-color: #837979;
+          text-align: center;
+          margin: 0;
+      }
+      #nav li {
+          display: inline-block;
+          position: relative;
+      }
+      
+      #nav li:hover {
+          background-color: #bd7777;
+          color: white;
+      }
+      #nav ul li {
+          list-style-type: none;
+          display: inline-block;
+          text-align: center;
+          padding: 10px;
+      }
+        #header{
+            text-align: center;
+        }
+      </style>   
+      <header id = "header"> BiteBalance </header>
+      <nav id="nav">
+        <ul>
+            <li onclick = "window.location.href=''">Home</li>
+          <li onclick ="window.location.href=''">Calendar</li>
+          <li onclick = "window.location.href=''">About</li>
+          <li onclick = "window.location.href=''">Help</li>
+        </ul>
+      </nav>
+      <h1></h1>
+      
+      <script>
+        // You can use the console window at the bottom
+        var h1 = document.querySelector('h1');
+        console.log(h1.textContent);
+      </script>
+</html>
