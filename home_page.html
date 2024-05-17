@@ -18,6 +18,58 @@
     </ul>
   </nav>
 
+
+  <div class='fill' id='random-slider' style="width:1200px; height:750px; margin: auto; margin-bottom: 20px;"
+    data-simple-slider>
+    <img id='img1' />
+    <img id='img2' />
+    <img id='img3' />
+    <img id='img4' />
+    <img id='img5' />
+    <img id='img6' />
+    <img id='img7' />
+    <img id='img8' />
+    <img id='img9' />
+    <img id='img10' />
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-slider/1.0.0/simpleslider.min.js"></script>
+  <script>
+    simpleslider.getSlider();
+
+    //https://foodish-api.com/api
+    function populateSlider() {
+      var slider = document.getElementById('random-slider');
+      var images = [];
+      var promises = [];
+      for (let i = 0; i < 10; i++) {
+        var promise = fetch(`https://foodish-api.com/api`)
+          .then((res) => res.json())
+          .then((res) => {
+            images.push(res.image);
+          });
+
+        promises.push(promise);
+      }
+      Promise.all(promises).then(() => {
+        document.getElementById('img1').src = images[0];
+        console.log("added successfully");
+        document.getElementById('img2').src = images[1];
+        document.getElementById('img3').src = images[2];
+        document.getElementById('img4').src = images[3];
+        document.getElementById('img5').src = images[4];
+        document.getElementById('img6').src = images[5];
+        document.getElementById('img7').src = images[6];
+        document.getElementById('img8').src = images[7];
+        document.getElementById('img9').src = images[8];
+        document.getElementById('img10').src = images[9];
+
+      });
+    }
+
+    window.onload = populateSlider;
+  </script>
+
+
   <div class="profile">
     <h1>Profile</h1>
     <form name="contactForm" method="get" action="calender_page.html">
