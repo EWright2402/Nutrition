@@ -16,7 +16,7 @@ app.get('/users', async (req,res) =>{
     const { data, error } = await supabase
         .from('Profiles')
         .select()
-    console.log(user)
+    console.log(data)
 
     if(error) {
         console.log('Error')
@@ -26,17 +26,13 @@ app.get('/users', async (req,res) =>{
     }
 })
 
-app.post('/users', async(req, res) => {
-    console.log('Adding Customer')
+app.post('/user', async(req, res) => {
 
-    console.log(req.body)
-    var firstName = req.body.username;
-    var name = req.body.name;
-    var state = req.body.password;
+    console.log(res)
 
     const { data, error } = await supabase
         .from('Profiles')
-        .insert({ 'customer_first_name': username, 'customer_last_name': name, 'customer_state': state })
+        .insert( 'Username')
         .select()
 
     if(error) {
