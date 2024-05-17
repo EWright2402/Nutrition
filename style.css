@@ -47,15 +47,17 @@ body {
 /* CALENDAR TRACKING PAGE */
 
 .side-bar {
-    width: 40%;
+    width: 30%;
     float: left;
     background-color: grey;
+    padding: 10px;
 }
 
 .main-page {
-    width: 58%;
+    width: 65%;
     float: right;
     background-color: whitesmoke;
+    padding: 10px;
 }
 
 .calendar-container {
