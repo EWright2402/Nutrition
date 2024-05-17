@@ -30,3 +30,4 @@ async function searchNutritionix() {
     document.getElementById('nutritionResults').innerHTML = "Food Name: " + foodName;
 }
 
+

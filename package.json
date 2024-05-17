@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.2",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0"
+  },
+  "name": "ewrig",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e '*'"
+  },
+  "author": "emily",
+  "license": "ISC",
+  "description": "377 Final Project"
+}
