@@ -60,6 +60,24 @@ body {
     padding: 10px;
 }
 
+#nutritionResults {
+    margin-top: 20px;
+    display: none;
+    width: 100%;
+}
+
+#nutritionResults th, #nutritionResults td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    width: 200px;
+}
+
+#nutritionResults img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .calendar-container {
     background: #fff;
     width: 450px;
