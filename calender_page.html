@@ -48,9 +48,19 @@
         </div>-->
         </div>
         <div class="main-page">
-            <input type="text" id="foodItem" placeholder="Search for food items..." required>
-            <button onclick="searchNutritionix()">Search</button>
-            <h3 id="nutritionResults"></h3>
+            <form>
+                <input type="text" id="foodItem" placeholder="Ex.'1 cup carrots and 2 tbsp hummus'" required>
+                <input id = "searchButton" type="submit" onclick="searchNutritionix(); return false;" value="Search Food Item">
+            </form>
+
+            <table id="nutritionResults">
+                <tr>
+                    <th></th>
+                    <th>Quantity</th>
+                    <th>Food Name</th>
+                    <th>Calories</th>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
@@ -150,4 +160,5 @@
     });
 </script>
 -->
+
 </html>
