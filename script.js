@@ -122,7 +122,17 @@ $(document).ready(function () {
     searchTypeahead();
 });
 
-//Ignore this for now. testing the supabase
+//supabase calls for login/add user'
+//needs to see if its in in the table, if not add, if so open up calendar+search page.
+// Name of user at top, information from the username is uploaded to calendar
+
+
+
+
+
+//Ignore this for now.
+//on load, it will get the info from table and output it
+//here is where we can store information to be displayed in cal/table
 // document.addEventListener('DOMContentLoaded', async () => {
 //     try {
 //         const response = await fetch('/users');

@@ -1,4 +1,5 @@
 const  supabaseClient  = require("@supabase/supabase-js")
+const { profile } = require("console")
 const express = require('express')
 
 const app = express()
@@ -15,22 +16,24 @@ app.get('/users', async (req,res) =>{
     console.log('get all usernames')
     const { data, error } = await supabase
     .from('Profiles')
-    .select('username, name');
+    .select('username,name, password');
 
     if (error) {
         console.log('Error:', error);
-        res.status(500).send(error);  // Send HTTP 500 for server error
+        res.status(500).send(error); 
     } else {
         // Separate the data into three arrays
         const usernames = data.map(profile => profile.username);
         const names = data.map(profile => profile.name);
+        const pass = data.map(profile => profile.password);
         // Structure the response
         const response = {
             usernames,
-            names
+            names,
+            pass
         };
         //console.log(usernames,names)
-        res.status(200).send(response);  // Send HTTP 200 for success
+        res.status(200).send(response); 
     }
     const {data1, error1 } = await supabase
     .from('calories')
@@ -58,10 +61,12 @@ app.listen(port, () => {
 })
 
 async function addUser(){
-    const newUser = document.getElementById("name") //get from
+    const newUser = document.getElementById("name") 
+    const usern = document.getElementById("username") 
+    const passw = document.getElementById("password") //get from
     const { error } = await supabase
     .from('Profiles')
-    .insert({ name: newUser })
+    .insert({usern,passw})
 }
 async function addEntry(){
     const user = document.getElementById()
