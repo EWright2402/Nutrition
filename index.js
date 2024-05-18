@@ -14,35 +14,41 @@ const supabase = supabaseClient.createClient(supabaseUrl,supabaseKey)
 app.get('/users', async (req,res) =>{
     console.log('get all usernames')
     const { data, error } = await supabase
-        .from('Profiles')
-        .select()
-    console.log(data)
+    .from('Profiles')
+    .select('username, name');
 
-    if(error) {
-        console.log('Error')
-        res.send(error)
+    if (error) {
+        console.log('Error:', error);
+        res.status(500).send(error);  // Send HTTP 500 for server error
     } else {
-        res.send(data)
+        // Separate the data into three arrays
+        const usernames = data.map(profile => profile.username);
+        const names = data.map(profile => profile.name);
+        // Structure the response
+        const response = {
+            usernames,
+            names
+        };
+        //console.log(usernames,names)
+        res.status(200).send(response);  // Send HTTP 200 for success
     }
-})
-
-app.post('/user', async(req, res) => {
-
-    console.log(res)
-
-    const { data, error } = await supabase
-        .from('Profiles')
-        .insert( 'Username')
-        .select()
-
-    if(error) {
-        console.log('Error')
-        res.send(error)
-    } else {
-        res.send(data)
-    }
-})
+});
 
 app.listen(port, () => {
     console.log('HELLO')
 })
+
+async function addUser(){
+    const newUser = document.getElementById("name") //get from
+    const { error } = await supabase
+    .from('Profiles')
+    .insert({ name: newUser })
+}
+async function addEntry(){
+    const user = document.getElementById()
+    const cal = document.getElementById()
+    const date = document.getElementById()
+    const { error } = await supabase
+    .from('Calories')
+    .insert({date,cal,user})
+}
