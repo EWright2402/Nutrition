@@ -32,8 +32,27 @@ app.get('/users', async (req,res) =>{
         //console.log(usernames,names)
         res.status(200).send(response);  // Send HTTP 200 for success
     }
+    const {data1, error1 } = await supabase
+    .from('calories')
+    .select('date, username, calories');
+    if (error) {
+        console.log('Error:', error);
+        res.status(500).send(error);  // Send HTTP 500 for server error
+    } else {
+        // Separate the data into three arrays
+        const date = data.map(cal => cal.date);
+        const user = data.map(cal => cal.username);
+        const calorie = data.map(cal => cal.calories);
+        // Structure the response
+        const response = {
+            date,
+            user,
+            calorie
+        };
+        //console.log(usernames,names)
+        res.status(200).send(response);  // Send HTTP 200 for success
+    }
 });
-
 app.listen(port, () => {
     console.log('HELLO')
 })

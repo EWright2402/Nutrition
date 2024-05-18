@@ -1,4 +1,5 @@
 // NUTRITIONIX SEARCH
+import './index.js';
 
 // Function to make API call to Nutritionix.
 async function retrieveNutritionixData(query) {
@@ -121,3 +122,35 @@ $(document).ready(function () {
     searchTypeahead();
 });
 
+//Ignore this for now. testing the supabase
+// document.addEventListener('DOMContentLoaded', async () => {
+//     try {
+//         const response = await fetch('/users');
+//         const data = await response.json();
+
+//         const usernamesList = document.getElementById('usernames');
+//         const namesList = document.getElementById('names');
+//         const passwordsList = document.getElementById('passwords');
+
+//         data.usernames.forEach(username => {
+//             const li = document.createElement('li');
+//             li.textContent = username;
+//             usernamesList.appendChild(li);
+//         });
+
+//         data.names.forEach(name => {
+//             const li = document.createElement('li');
+//             li.textContent = name;
+//             namesList.appendChild(li);
+//         });
+
+//         data.passwords.forEach(password => {
+//             const li = document.createElement('li');
+//             li.textContent = password;
+//             passwordsList.appendChild(li);
+//         });
+
+//     } catch (error) {
+//         console.error('Error fetching user data:', error);
+//     }
+// });
