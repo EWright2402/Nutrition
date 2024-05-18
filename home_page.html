@@ -19,7 +19,7 @@
   </nav>
 
 
-  <div class='fill' id='random-slider' style="width:1200px; height:600px; margin: auto; margin-bottom: 20px;"
+  <div class='fill' id='random-slider' style="width:500px; height:500px; margin: auto; margin-bottom: 20px; object-fit: cover;"
     data-simple-slider>
     <img id='img1'/>
     <img id='img2'/>
@@ -52,7 +52,6 @@
       }
       Promise.all(promises).then(() => {
         document.getElementById('img1').src = images[0];
-        console.log("added successfully");
         document.getElementById('img2').src = images[1];
         document.getElementById('img3').src = images[2];
         document.getElementById('img4').src = images[3];
@@ -62,7 +61,6 @@
         document.getElementById('img8').src = images[7];
         document.getElementById('img9').src = images[8];
         document.getElementById('img10').src = images[9];
-
       });
     }
 
