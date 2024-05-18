@@ -69,10 +69,48 @@ async function addUser(){
     .insert({usern,passw})
 }
 async function addEntry(){
+    //have a button under search food item that adds entry
+    //prompt?
     const user = document.getElementById()
     const cal = document.getElementById()
     const date = document.getElementById()
+    //filter so its just for that username
     const { error } = await supabase
     .from('Calories')
     .insert({date,cal,user})
+}
+async function logon(){
+    //filter so its just for that username- set username
+    const user = document.getElementById("1")
+    const pass = document.getElementById("2")
+    const name = document.getElementById("3")
+    try {
+        let { data, error } = await supabase
+            .from('Profiles')
+            .select('*')
+            .eq('username', user)
+            .eq('password', pass)
+            .eq('name', name);
+
+        if (error) {
+            console.error('Error:', error);
+            return false;
+        }
+
+        if (data.length > 0) {
+            console.log('User exists:', data);
+            return true;
+        } else {
+            const { data: insertData, error: insertError } = await supabase
+                .from('Profiles')  // Replace with your table name
+                .insert([
+                    { username: user, password: pass, name: name }
+                ]);
+            return false;
+        }
+
+    } catch (err) {
+        console.error('Error:', err);
+        return false;
+    }
 }
