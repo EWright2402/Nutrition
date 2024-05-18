@@ -42,7 +42,47 @@ body {
 
 
 /* ABOUT PAGE */
+.column {
+    float: left;
+    width: 33.3%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+}
 
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+}
+
+.about-section {
+    padding: 5px 30px 30px;
+    text-align: center;
+    background-color: #474e5d;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.about-section img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.container {
+    padding: 1px 16px;
+}
+
+.container::after,
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.title {
+    color: grey;
+}
 
 /* CALENDAR TRACKING PAGE */
 
@@ -62,8 +102,8 @@ body {
 
 #foodItem {
     width: 330px;
-    height: 45px; 
-    padding: 14px; 
+    height: 45px;
+    padding: 14px;
     border: 2px solid;
     font-size: 18px;
 }
@@ -81,7 +121,8 @@ body {
     width: 100%;
 }
 
-#nutritionResults th, #nutritionResults td {
+#nutritionResults th,
+#nutritionResults td {
     border: 1px solid #ddd;
     padding: 8px;
     width: 200px;
