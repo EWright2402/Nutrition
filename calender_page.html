@@ -3,30 +3,19 @@
 <head>
     <title>INST377 - Final Project</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
     <script src="script.js"></script>
     <script src="index.js"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-        <link rel="stylesheet"
+    <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
 
 
     <meta charset='utf-8' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
-    <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-            });
-            calendar.render();
-        });
-
-    </script>
 </head>
 
 <h1 id="header"> BiteBalance </h1>
@@ -44,7 +33,14 @@
     <div class="main-container">
         <div class="side-bar">
             <div id='calendar'></div>
-            
+            <table id="eventDetails">
+                <tr>
+                    <th></th>
+                    <th>Quantity</th>
+                    <th>Food Name</th>
+                    <th>Calories</th>
+                </tr>
+            </table>
             <!--
         <div class="calendar-container">
             <header class="calendar-header">
@@ -70,9 +66,12 @@
         </div>-->
         </div>
         <div class="main-page">
-            <form>
-                <input type="text" id="foodItem" class="typeahead" placeholder="Ex.'1 cup carrots and 2 tbsp hummus'" required>
-                <input id = "searchButton" type="submit" onclick="searchNutritionix(); return false;" value="Search Food Item">
+            <form class="form-container">
+                <input type="text" id="foodItem" class="typeahead" placeholder="Ex.'1 cup carrots and 2 tbsp hummus'"
+                    required>
+                <button type="button" id="searchButton" onclick="searchNutritionix()">Search Food Item</button>
+                <input type="date" id="dateInput" required>
+                <button type="button" id="addButton" onclick="addSelectedFoodToCalendar()">Add to Calendar</button>
             </form>
 
             <table id="nutritionResults">

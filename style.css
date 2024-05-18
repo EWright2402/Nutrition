@@ -49,7 +49,7 @@ body {
 .side-bar {
     width: 30%;
     float: left;
-    background-color: grey;
+    
     padding: 10px;
 }
 
@@ -88,6 +88,24 @@ body {
 }
 
 #nutritionResults img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#eventDetails {
+    margin-top: 20px;
+    display: none;
+    width: 100%;
+}
+
+#eventDetails th, #eventDetails td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    width: 200px;
+}
+
+#eventDetails img {
     display: block;
     margin-left: auto;
     margin-right: auto;

@@ -3,7 +3,7 @@
 
 // Function to make API call to Nutritionix.
 async function retrieveNutritionixData(query) {
-    const appId = "8cef4b7b"
+    const appId = "8cef4b7b";
     const appKey = "0beac0be800a5023af2c26d5491f0248";
 
     const response = await fetch('https://trackapi.nutritionix.com/v2/natural/nutrients', {
@@ -23,7 +23,6 @@ async function retrieveNutritionixData(query) {
 
 // Function to search for foods and populate table with food items.
 async function searchNutritionix() {
-
     let foodItem = document.getElementById('foodItem').value;
     
     // Prevent function from running if the search bar is empty.
@@ -32,16 +31,14 @@ async function searchNutritionix() {
     }
 
     // Clears any previous search.
-    clearTable();
+    clearTable('nutritionResults');
 
-
-    let nutritionData = await retrieveNutritionixData(foodItem)
+    let nutritionData = await retrieveNutritionixData(foodItem);
     const resultsTable = document.getElementById('nutritionResults');
 
     // Populates table with all the components of the food they entered.
     nutritionData.foods.forEach(item => {
-
-        console.log(item.food_name, item.photo.thumb)
+        console.log(item.food_name, item.photo.thumb);
 
         let newRow = document.createElement('tr');
         let picture = document.createElement('td');
@@ -49,7 +46,7 @@ async function searchNutritionix() {
         let foodName = document.createElement('td');
         let numCalories = document.createElement('td');
 
-        picture.innerHTML = `<img src=${item.photo.thumb}></img>`;
+        picture.innerHTML = `<img src=${item.photo.thumb} alt="Food Image">`;
         quantity.innerHTML = item.serving_qty + ' ' + item.serving_unit;
         foodName.innerHTML = item.food_name;
         numCalories.innerHTML = item.nf_calories;
@@ -68,16 +65,14 @@ async function searchNutritionix() {
     return false;
 }
 
-
 /* Function to clear the rows in the table except the header if the user wants 
     to do multiple searches without reloading the page. */
-    function clearTable() {
-        const table = document.getElementById('nutritionResults');
-    
-        for (let i = table.rows.length - 1; i > 0; i--) {
-            table.deleteRow(i);
-        }
+function clearTable(tableId) {
+    const table = document.getElementById(tableId);
+    for (let i = table.rows.length - 1; i > 0; i--) {
+        table.deleteRow(i);
     }
+}
 
 // Function to initialize Typeahead.js to autofill search results in a drop down menu format.
 function searchTypeahead() {
@@ -122,6 +117,73 @@ $(document).ready(function () {
     searchTypeahead();
 });
 
+// FullCalendar integration
+document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: [],
+        eventClick: function (info) {
+            // Display food information when an event is clicked
+            var foodDetails = info.event.extendedProps.foodDetails;
+
+            // Clear the existing table rows except for the header
+            clearTable('eventDetails');
+
+            // Populate the table with the food details
+            var table = document.getElementById('eventDetails');
+            table.style.display = 'table';
+            foodDetails.forEach(function (detail) {
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                cell1.innerHTML = `<img src="${detail.imageURL}" alt="Food Image" style="max-width: 100px; max-height: 100px;">`;
+                cell2.innerHTML = detail.quantity;
+                cell3.innerHTML = detail.foodName;
+                cell4.innerHTML = detail.calories;
+            });
+        }
+    });
+
+    calendar.render();
+
+    window.addFoodItem = function (food, date, foodDetails) {
+        if (food && date) {
+            calendar.addEvent({
+                title: 'Meal: ' + food,
+                start: date,
+                foodDetails: foodDetails,
+                allDay: true
+            });
+        } else {
+            alert('Please enter both a food item and a date.');
+        }
+    };
+});
+
+// Function to add the selected food to the calendar
+function addSelectedFoodToCalendar() {
+    let foodItem = document.getElementById('foodItem').value;
+    let dateInput = document.getElementById('dateInput').value;
+
+    // Retrieve food details from the search results table, including the image URL
+    let foodDetails = [];
+    let nutritionTable = document.getElementById('nutritionResults');
+    let rows = nutritionTable.getElementsByTagName('tr');
+    for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header row
+        let cells = rows[i].getElementsByTagName('td');
+        let quantity = cells[1].textContent;
+        let foodName = cells[2].textContent;
+        let calories = cells[3].textContent;
+        let imageURL = cells[0].querySelector('img').src; // Extract image URL
+        foodDetails.push({ quantity, foodName, calories, imageURL }); // Include imageURL in foodDetails
+    }
+
+    // Add the selected food to the calendar
+    addFoodItem(foodItem, dateInput, foodDetails);
+}
 //supabase calls for login/add user'
 //needs to see if its in in the table, if not add, if so open up calendar+search page.
 // Name of user at top, information from the username is uploaded to calendar
