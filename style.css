@@ -109,10 +109,27 @@ body {
 }
 
 #searchButton {
+    position: ;
     font-size: large;
     font-weight: bold;
     background-color: #32ba8d;
     border: 2px solid;
+}
+
+#dateInput {
+    font-size: large;
+    font-weight: bold;
+    
+    border: 2px solid;
+    display: none;
+}
+
+#addButton {
+    font-size: large;
+    font-weight: bold;
+    background-color: #32ba8d;
+    border: 2px solid;
+    display: none;
 }
 
 #nutritionResults {

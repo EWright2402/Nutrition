@@ -70,8 +70,6 @@
                 <input type="text" id="foodItem" class="typeahead" placeholder="Ex.'1 cup carrots and 2 tbsp hummus'"
                     required>
                 <button type="button" id="searchButton" onclick="searchNutritionix()">Search Food Item</button>
-                <input type="date" id="dateInput" required>
-                <button type="button" id="addButton" onclick="addSelectedFoodToCalendar()">Add to Calendar</button>
             </form>
 
             <table id="nutritionResults">
@@ -82,6 +80,8 @@
                     <th>Calories</th>
                 </tr>
             </table>
+            <input type="date" id="dateInput" required> <br>
+            <button type="button" id="addButton" onclick="addSelectedFoodToCalendar()">Add to Calendar</button>
         </div>
     </div>
 </body>

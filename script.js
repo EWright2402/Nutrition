@@ -59,9 +59,10 @@ async function searchNutritionix() {
         resultsTable.appendChild(newRow);
     });
 
-    // Table is made visible. 
+    // Table and additional buttons are made visible. 
     document.getElementById('nutritionResults').style.display = 'block';
-    
+    document.getElementById('dateInput').style.display = 'block';
+    document.getElementById('addButton').style.display = 'block';
     return false;
 }
 
@@ -152,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addFoodItem = function (food, date, foodDetails) {
         if (food && date) {
             calendar.addEvent({
-                title: 'Meal: ' + food,
+                title: food,
                 start: date,
                 foodDetails: foodDetails,
                 allDay: true
