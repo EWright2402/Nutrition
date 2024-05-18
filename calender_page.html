@@ -3,6 +3,8 @@
 <head>
     <title>INST377 - Final Project</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
@@ -68,7 +70,7 @@
         </div>
         <div class="main-page">
             <form>
-                <input type="text" id="foodItem" placeholder="Ex.'1 cup carrots and 2 tbsp hummus'" required>
+                <input type="text" id="foodItem" class="typeahead" placeholder="Ex.'1 cup carrots and 2 tbsp hummus'" required>
                 <input id = "searchButton" type="submit" onclick="searchNutritionix(); return false;" value="Search Food Item">
             </form>
 

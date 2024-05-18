@@ -197,3 +197,20 @@ header .calendar-current-date {
 .calendar-dates li:not(.active):hover::before {
     background: #e4e1e1;
 }
+
+.tt-menu {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+}
+
+.tt-suggestion {
+    padding: 10px;
+}
+
+.tt-suggestion.tt-cursor {
+    background-color: #ddd;
+}
+
+.tt-suggestion p {
+    margin: 0;
+}

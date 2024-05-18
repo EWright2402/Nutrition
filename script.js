@@ -77,3 +77,47 @@ async function searchNutritionix() {
             table.deleteRow(i);
         }
     }
+
+// Function to initialize Typeahead.js to autofill search results in a drop down menu format.
+function searchTypeahead() {
+    var foodItems = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        // Fetch autofill suggestions from Nutritionix API.
+        remote: {
+            url: 'https://trackapi.nutritionix.com/v2/search/instant',
+            prepare: function (query, settings) {
+                settings.url += '?query=' + query;
+                settings.headers = {
+                    'x-app-id': '8cef4b7b',
+                    'x-app-key': '0beac0be800a5023af2c26d5491f0248',
+                    'Content-Type': 'application/json'
+                };
+                return settings;
+            },
+            transform: function (response) {
+                // Transforms the response to pull food items.
+                return response.common.map(function (item) {
+                    return item.food_name;
+                });
+            }
+        }
+    });
+
+    foodItems.initialize();
+
+    $('#foodItem').typeahead({
+        hint: false,
+        highlight: true,
+        minLength: 1
+    }, {
+        name: 'foodItems',
+        source: foodItems.ttAdapter()
+    });
+}
+
+// Call the function to initialize Typeahead.
+$(document).ready(function () {
+    searchTypeahead();
+});
+
