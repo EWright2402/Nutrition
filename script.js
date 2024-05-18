@@ -1,5 +1,5 @@
 // NUTRITIONIX SEARCH
-import './index.js';
+//import './index.js';
 
 // Function to make API call to Nutritionix.
 async function retrieveNutritionixData(query) {
