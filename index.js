@@ -3,7 +3,7 @@ const { profile } = require("console")
 const express = require('express')
 
 const app = express()
-const port = 5501
+const port = 3000
 app.use(express.static(__dirname+'/public'))
 
 
@@ -56,24 +56,11 @@ app.get('/users', async (req,res) =>{
         res.status(200).send(response);  // Send HTTP 200 for success
     }
 });
+
 app.listen(port, () => {
     console.log(`server is running on ${port}`)
 })
-
-async function addUser(){
-    const newUser = document.getElementById("name") 
-    const usern = document.getElementById("username") 
-    const passw = document.getElementById("password") //get from
-    const { error } = await supabase
-    .from('Profiles')
-    .insert({usern,passw})
-}
-async function addEntry(){
-    //have a button under search food item that adds entry
-    //prompt?
-    const user = document.getElementById()
-    const cal = document.getElementById()
-    const date = document.getElementById()
+async function addEntry(user,cal,date){
     //filter so its just for that username
     const { error } = await supabase
     .from('Calories')
@@ -91,7 +78,6 @@ async function logon(){
             .eq('username', user)
             .eq('password', pass)
             .eq('name', name);
-            console.log(data)
 
         if (error) {
             console.error('Error:', error);
@@ -102,8 +88,6 @@ async function logon(){
             const userRecord = userData[0];
             if (userRecord.password === pass) {
                 console.log('User exists:', userRecord);
-                document.getElementById("userProfile").innerHTML = "Name";
-                window.location.href = 'calender_page.html';  // Redirect to the calendar page
                 return true;
             } else {
                 alert('Incorrect password');
@@ -116,7 +100,10 @@ async function logon(){
                 .insert([
                     { username: user, password: pass, name: name }
                 ]);
-            window.location.href = 'calender_page.html';
             return false;
         }
 }
+document.getElementById('contactForm').addEventListener('submit', function(event){
+    event.preventDefault();
+    logon();
+});

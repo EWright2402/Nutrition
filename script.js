@@ -184,7 +184,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function addSelectedFoodToCalendar() {
     let foodItem = document.getElementById('foodItem').value;
     let dateInput = document.getElementById('dateInput').value;
-
     // Retrieve food details from the search results table, including the image URL
     let foodDetails = [];
     let nutritionTable = document.getElementById('nutritionResults');
@@ -199,8 +198,7 @@ function addSelectedFoodToCalendar() {
     }
 
     // Add the selected food to the calendar
+    addEntry(document.getElementById("userProfile").innerHTML, foodDetails, dateInput);
     addFoodItem(foodItem, dateInput, foodDetails);
 }
-//supabase calls for login/add user'
-//needs to see if its in in the table, if not add, if so open up calendar+search page.
-// Name of user at top, information from the username is uploaded to calendar
+

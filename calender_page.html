@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
     <script src="index.js" defer></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
@@ -30,7 +30,7 @@
             <li onclick="window.location.href='help_page.html'">Help</li>
         </ul>
     </nav>
-    <h2 id = "userProfile">HELLO</h2>
+    <h2 id = "userProfile"></h2>
     <div class="main-container">
         <div class="side-bar">
             <div id='calendar'></div>
@@ -43,29 +43,6 @@
                     <th></th>
                 </tr>
             </table>
-            <!--
-        <div class="calendar-container">
-            <header class="calendar-header">
-                <p class="calendar-current-date">May 2024</p>
-                <div class="calendar-navigation">
-                    <span id="calendar-prev" class="material-symbols-rounded"> chevron_left </span>
-                    <span id="calendar-next" class="material-symbols-rounded"> chevron_right </span>
-                </div>
-            </header>
-    
-            <div class="calendar-body">
-                <ul class="calender-weekdays">
-                    <li>Sun</li>
-                    <li>Mon</li>
-                    <li>Tue</li>
-                    <li>Wed</li>
-                    <li>Thu</li>
-                    <li>Fri</li>
-                    <li>Sat</li>
-                </ul>
-                <ul class="calendar-dates"></ul>
-            </div>
-        </div>-->
         </div>
         <div class="main-page">
                 <input type="text" id="foodItem" class="typeahead" placeholder="Ex.'1 cup carrots and 2 tbsp hummus'"
