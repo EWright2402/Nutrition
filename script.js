@@ -24,10 +24,10 @@ async function retrieveNutritionixData(query) {
 // Function to search for foods and populate table with food items.
 async function searchNutritionix() {
     let foodItem = document.getElementById('foodItem').value;
-    
+
     // Prevent function from running if the search bar is empty.
     if (!foodItem) {
-        return false; 
+        return false;
     }
 
     // Clears any previous search.
@@ -140,10 +140,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
+                var cell5 = row.insertCell(4);
                 cell1.innerHTML = `<img src="${detail.imageURL}" alt="Food Image" style="max-width: 100px; max-height: 100px;">`;
                 cell2.innerHTML = detail.quantity;
                 cell3.innerHTML = detail.foodName;
                 cell4.innerHTML = detail.calories;
+
+                // Create a button element for removing the row
+                var removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.addEventListener('click', function () {
+                    // Remove the row when the button is clicked
+                    table.deleteRow(row.rowIndex);
+                    if (table.rows.length === 1) {
+                        info.event.remove();
+                        table.style.display = 'none';
+                    }
+                });
+
+                // Append the button to the cell
+                cell5.appendChild(removeButton);
             });
         }
     });

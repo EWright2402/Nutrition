@@ -87,14 +87,14 @@ body {
 /* CALENDAR TRACKING PAGE */
 
 .side-bar {
-    width: 30%;
+    width: 40%;
     float: left;
     
     padding: 10px;
 }
 
 .main-page {
-    width: 65%;
+    width: 55%;
     float: right;
     background-color: whitesmoke;
     padding: 10px;
@@ -109,7 +109,6 @@ body {
 }
 
 #searchButton {
-    position: ;
     font-size: large;
     font-weight: bold;
     background-color: #32ba8d;
