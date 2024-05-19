@@ -3,7 +3,7 @@ const { profile } = require("console")
 const express = require('express')
 
 const app = express()
-const port = 3000
+const port = 5501
 app.use(express.static(__dirname+'/public'))
 
 
@@ -57,7 +57,7 @@ app.get('/users', async (req,res) =>{
     }
 });
 app.listen(port, () => {
-    console.log('HELLO')
+    console.log(`server is running on ${port}`)
 })
 
 async function addUser(){
@@ -84,13 +84,14 @@ async function logon(){
     const user = document.getElementById("1")
     const pass = document.getElementById("2")
     const name = document.getElementById("3")
-    try {
+    
         let { data, error } = await supabase
             .from('Profiles')
             .select('*')
             .eq('username', user)
             .eq('password', pass)
             .eq('name', name);
+            console.log(data)
 
         if (error) {
             console.error('Error:', error);
@@ -98,19 +99,24 @@ async function logon(){
         }
 
         if (data.length > 0) {
-            console.log('User exists:', data);
-            return true;
+            const userRecord = userData[0];
+            if (userRecord.password === pass) {
+                console.log('User exists:', userRecord);
+                document.getElementById("userProfile").innerHTML = "Name";
+                window.location.href = 'calender_page.html';  // Redirect to the calendar page
+                return true;
+            } else {
+                alert('Incorrect password');
+                return false;
+            }
         } else {
+            confirm("Would you like to sign up?")
             const { data: insertData, error: insertError } = await supabase
                 .from('Profiles')  // Replace with your table name
                 .insert([
                     { username: user, password: pass, name: name }
                 ]);
+            window.location.href = 'calender_page.html';
             return false;
         }
-
-    } catch (err) {
-        console.error('Error:', err);
-        return false;
-    }
 }

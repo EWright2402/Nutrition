@@ -3,8 +3,9 @@
 <head>
   <title>INST377 - Final Project</title>
   <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
   <script src="script.js"></script>
-  <script src="index.js"></script>
+  
 </head>
 
 <h1 id="header"> BiteBalance </h1>
@@ -71,26 +72,16 @@
 
   <div class="profile">
     <h1>Profile</h1>
-    <form name="contactForm" method="get" action="calender_page.html" onsubmit="return(logon())">
+    <form name="contactForm" method="get" onsubmit="return(logon())">
       <label for="name">Username: </label>
       <input type="text" id="1" required><br><br>
-      <label for="dob">Password: </label>
+      <label for="name">Password: </label>
       <input type="text" id="2" required><br><br>
-      <label for="dob">Name: </label>
+      <label for="name">Name: </label>
       <input type="text" id="3" required><br><br>
-      <button id = "profButton"></button>
+      <button id = "profButton" type = "submit"></button>
     </form>
   </div>
-    <!-- <form name="contactForm" method="get" action="calender_page.html">
-      <label for="name">Name: </label>
-      <input type="text" id="name" required><br><br>
-      <label for="dob">Date: </label>
-      <input type="date" id="dob" required><br><br>
-      <label for="food">Food: </label><br>
-      <textarea id="message" rows="5" cols="50" required></textarea><br><br>
-      <button type="submit">Submit</button>
-    </form>
-  </div> -->
 </body>
 
 </html>
