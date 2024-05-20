@@ -1,5 +1,4 @@
 // NUTRITIONIX SEARCH
-//import {addEntry,addUser} from './index.js';
 
 // Function to make API call to Nutritionix.
 async function retrieveNutritionixData(query) {
@@ -181,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Function to add the selected food to the calendar
-function addSelectedFoodToCalendar() {
+async function addSelectedFoodToCalendar() {
     let foodItem = document.getElementById('foodItem').value;
     let dateInput = document.getElementById('dateInput').value;
     // Retrieve food details from the search results table, including the image URL
@@ -198,51 +197,9 @@ function addSelectedFoodToCalendar() {
     }
 
     // Add the selected food to the calendar
-    addEntry(document.getElementById("userProfile").innerHTML, foodDetails, dateInput);
-    addFoodItem(foodItem, dateInput, foodDetails);
-}
-async function addEntry(user,cal,date){
-    //filter so its just for that username
-    const { error } = await supabase
-    .from('Calories')
-    .insert({date,cal,user})
-}
-async function logon(){
-    //filter so its just for that username- set username
-    const user = document.getElementById("1")
-    const pass = document.getElementById("2")
-    const name = document.getElementById("3")
-    
-        let { data, error } = await supabase
-            .from('Profiles')
-            .select('*')
-            .eq('username', user)
-            .eq('password', pass)
-            .eq('name', name);
-
-        if (error) {
-            console.error('Error:', error);
-            return false;
-        }
-
-        if (data.length > 0) {
-            const userRecord = userData[0];
-            if (userRecord.password === pass) {
-                console.log('User exists:', userRecord);
-                return true;
-            } else {
-                alert('Incorrect password');
-                return false;
-            }
-        } else {
-            confirm("Would you like to sign up?")
-            const { data: insertData, error: insertError } = await supabase
-                .from('Profiles')  // Replace with your table name
-                .insert([
-                    { username: user, password: pass, name: name }
-                ]);
-            return false;
-        }
+    await addEntry(document.getElementById("userProfile").innerHTML, foodDetails[0], dateInput);
+    //addFoodItem(foodItem, dateInput, foodDetails);
+    return false;
 }
 document.addEventListener('DOMContentLoaded', function() {
     // This code will run after the DOM has fully loaded
