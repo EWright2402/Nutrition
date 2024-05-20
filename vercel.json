@@ -1,0 +1,19 @@
+{
+    "functions": {
+      "api": {
+        "rewrites": [
+          {
+            "source": "/(.*)",
+            "destination": "/index.js"
+          }
+        ]
+      }
+    },
+    "routes": [
+      {
+        "src": "/users",
+        "dest": "/index.js"
+      }
+    ]
+  }
+  
