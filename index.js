@@ -11,6 +11,9 @@ const supabaseUrl = 'https://xmazthpkovtmqbabkknb.supabase.co'
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhtYXp0aHBrb3Z0bXFiYWJra25iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU4MTkwMjgsImV4cCI6MjAzMTM5NTAyOH0.onzB_K2UyUpjIuIaknYyTXBaV3Q_Fa3ddswWxktXl4c'
 const supabase = supabaseClient.createClient(supabaseUrl,supabaseKey)
 
+app.get('/', (req, res) => {
+     res.sendFile('public/home_page.html',{root: __dirname})   
+})
 
 app.get('/users', async (req,res) =>{
     console.log('get all usernames')
