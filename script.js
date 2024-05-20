@@ -201,4 +201,58 @@ function addSelectedFoodToCalendar() {
     addEntry(document.getElementById("userProfile").innerHTML, foodDetails, dateInput);
     addFoodItem(foodItem, dateInput, foodDetails);
 }
+async function addEntry(user,cal,date){
+    //filter so its just for that username
+    const { error } = await supabase
+    .from('Calories')
+    .insert({date,cal,user})
+}
+async function logon(){
+    //filter so its just for that username- set username
+    const user = document.getElementById("1")
+    const pass = document.getElementById("2")
+    const name = document.getElementById("3")
+    
+        let { data, error } = await supabase
+            .from('Profiles')
+            .select('*')
+            .eq('username', user)
+            .eq('password', pass)
+            .eq('name', name);
 
+        if (error) {
+            console.error('Error:', error);
+            return false;
+        }
+
+        if (data.length > 0) {
+            const userRecord = userData[0];
+            if (userRecord.password === pass) {
+                console.log('User exists:', userRecord);
+                return true;
+            } else {
+                alert('Incorrect password');
+                return false;
+            }
+        } else {
+            confirm("Would you like to sign up?")
+            const { data: insertData, error: insertError } = await supabase
+                .from('Profiles')  // Replace with your table name
+                .insert([
+                    { username: user, password: pass, name: name }
+                ]);
+            return false;
+        }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    // This code will run after the DOM has fully loaded
+    const contactForm = document.getElementById("prof");
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the form from submitting
+            logon();  // Call the logon function when the form is submitted
+        });
+    } else {
+        console.error(' ID "prof" not found.');
+    }
+});
