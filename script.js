@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById("prof");
     if (contactForm) {
         contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();  // Prevent the form from submitting
+            event.preventDefault(); 
             logon();  // Call the logon function when the form is submitted
         });
     } else {
