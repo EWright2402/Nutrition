@@ -36,8 +36,8 @@ app.get('/users', async (req,res) =>{
         res.status(200).send(response); 
     }
     const {data1, error1 } = await supabase
-    .from('calories')
-    .select('date, username, calories');
+        .from('calories')
+        .select('date, username, calories');
     if (error) {
         console.log('Error:', error);
         res.status(500).send(error);  // Send HTTP 500 for server error
@@ -101,7 +101,7 @@ async function logon(){
             }
         } else {
             confirm("Would you like to sign up?")
-            const { data: insertData, error: insertError } = await supabase
+            const { data, error} = await supabase
                 .from('Profiles')  // Replace with your table name
                 .insert([
                     { username: user, password: pass, name: name }

@@ -197,7 +197,7 @@ async function addSelectedFoodToCalendar() {
     }
 
     // Add the selected food to the calendar
-    await addEntry(document.getElementById("userProfile").innerHTML, foodDetails[0], dateInput);
+    addEntry(document.getElementById("userProfile").innerHTML, foodDetails["calories"], dateInput);
     //addFoodItem(foodItem, dateInput, foodDetails);
     return false;
 }
