@@ -213,3 +213,52 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error(' ID "prof" not found.');
     }
 });
+async function addEntry(user,cal,date){
+    //filter so its just for that username
+    console.log()
+    const { data,error } = await fetch(`http://localhost:5501/calories`,{
+        method: "GET",
+        body: JSON.stringify({
+            "userame": user,
+            "calories": cal,
+            "date": date
+        }),
+    })
+    if(error){
+        console.error("ERROR", error.message)
+    }else{
+        console.log(data)
+    }
+}
+async function logon(){
+    //filter so its just for that username- set username
+    const user = document.getElementById("1")
+    const pass = document.getElementById("2")
+    const name = document.getElementById("3")
+    
+        let { data, error } = await fetch(`http://localhost:5501/users`)
+            .then((res)=> res.json())
+            .then((res) => {
+                var userT = res.username
+                var passT = res.pass
+                var nameT = res.name
+                if (userT == user && passT==pass && nameT ==name){
+                    return true;
+                } else {
+                    confirm("Would you like to sign up?")
+                    const { data, error} = fetch(`http://localhost:3000/Profiles`,{
+                        method: "GET",    
+                        body: JSON.stringify({
+                            "userame": `${document.getElementById("1").value}`,
+                            "pass": `${document.getElementById("2").value}`,
+                            "name": `${document.getElementById("3").value}`
+                        }),
+                    })
+                        .then((res)=>{
+                            console.log(res)
+                        }  // Replace with your table name
+                        )
+                    return false;
+            }
+            })
+        }

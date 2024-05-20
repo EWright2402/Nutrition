@@ -35,6 +35,8 @@ app.get('/users', async (req,res) =>{
         //console.log(usernames,names)
         res.status(200).send(response); 
     }
+});
+app.get('/cal', async (req,res) =>{
     const {data1, error1 } = await supabase
         .from('calories')
         .select('date, username, calories');
@@ -55,59 +57,7 @@ app.get('/users', async (req,res) =>{
         //console.log(usernames,names)
         res.status(200).send(response);  // Send HTTP 200 for success
     }
-});
-
+})
 app.listen(port, () => {
     console.log(`server is running on ${port}`)
 })
-async function addEntry(user,cal,date){
-    //filter so its just for that username
-    console.log()
-    const { data,error } = await supabase
-    .from('Calories')
-    .insert({date,cal,user})
-    if(error){
-        console.error("ERROR", error.message)
-    }else{
-        console.log(data)
-    }
-}
-async function logon(){
-    //filter so its just for that username- set username
-    const user = document.getElementById("1")
-    const pass = document.getElementById("2")
-    const name = document.getElementById("3")
-    
-        let { data, error } = await supabase
-            .from('Profiles')
-            .select('*')
-            .eq('username', user)
-            .eq('password', pass)
-            .eq('name', name);
-
-        if (error) {
-            console.error('Error:', error);
-            return false;
-        }
-
-        if (data.length > 0) {
-            const userRecord = userData[0];
-            if (userRecord.password === pass) {
-                console.log('User exists:', userRecord);
-                return true;
-            } else {
-                alert('Incorrect password');
-                return false;
-            }
-        } else {
-            confirm("Would you like to sign up?")
-            const { data, error} = await supabase
-                .from('Profiles')  // Replace with your table name
-                .insert([
-                    { username: user, password: pass, name: name }
-                ]);
-            return false;
-        }
-}
-window.addEntry= addEntry;
-window.logon= logon;
